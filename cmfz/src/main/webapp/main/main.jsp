@@ -28,12 +28,12 @@
 
             //执行成功的回调函数
             success:function(data){
-                alert(data[4].menus.length)
+
 
                 for (var i=0;i<data.length;i++) {
                     var str=" ";
                     for (var j = 0; j< data[i].menus.length; j++) {
-                        str +="<a style='margin-left: 30px' onclick='toAddTabsForUserInfo()' href='javaScript:void(0)'>"+ data[i].menus[j].title+" </a>"+"<br/>";
+                        str +="<a style='margin-left: 30px'  onclick='toAddTabsForUserInfo(\""+data[i].menus[j].title+"\")' href='javaScript:void(0)'>"+ data[i].menus[j].title+"</a>"+"<br/>";
 
                     }
 
@@ -42,6 +42,7 @@
 
                             title: data[i].title,
                             content: str,
+                            iconCls: data[i].iconcls,
                             selected: false
                         });
                     }
@@ -52,19 +53,20 @@
     });
 
     //添加一个页签；里面的内容是用户信息===》就是那个datagrid.jsp中的内容
-    function toAddTabsForUserInfo(){
+    function toAddTabsForUserInfo(da,img){
         //标题是用户信息的页签是否存在
-        var isExists = $("#tt").tabs("exists","用户信息");
+        var isExists = $("#tt").tabs("exists",da);
+
         if(isExists){
             //存在
-            $("#tt").tabs("select","用户信息");
+            $("#tt").tabs("select",da);
         }else{
             //不存在
             $("#tt").tabs("add",{
-                title: "用户信息",
+                title: da,
                 closable:true,
-                iconCls:"icon-save",
-                content:'<iframe src="datagrid.jsp" width="100%" height="100%"></iframe>'
+                iconCls:"icon-tip",
+                content:'<iframe src="/pages/login.jsp" width="100%" height="100%"></iframe>'
             });
         }
 
@@ -73,7 +75,8 @@
 </script>
 
 </head>
-<body class="easyui-layout">   
+<body class="easyui-layout">
+
     <div data-options="region:'north',split:true" style="height:60px;background-color:  #5C160C">
     	<div style="font-size: 24px;color: #FAF7F7;font-family: 楷体;font-weight: 900;width: 500px;float:left;padding-left: 20px;padding-top: 10px" >持名法州后台管理系统</div>
     	<div style="font-size: 16px;color: #FAF7F7;font-family: 楷体;width: 300px;float:right;padding-top:15px">欢迎您:${sessionScope.admin.name} &nbsp;<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改密码</a>&nbsp;&nbsp;<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-01'">退出系统</a></div>
