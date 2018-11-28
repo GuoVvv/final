@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.cmfz.dao.ViewpagerDao">
+
+    <select id="selectView" resultType="Viewpager">
+        select * from viewpager
+        LIMIT #{start},#{rows}
+    </select>
+
+    <select id="getcount" resultType="int">
+        select count(*) from  viewpager
+    </select>
+
+    <update id="update">
+        update  viewpager set  status=#{status}  where id=#{id}
+    </update>
+
+    <insert id="insert">
+        insert into viewpager values(#{id},#{title},#{imgpath},#{desc},#{status},#{date})
+    </insert>
+
+    <delete id="delete">
+        delete from viewpager where id=#{id}
+    </delete>
+
+</mapper>

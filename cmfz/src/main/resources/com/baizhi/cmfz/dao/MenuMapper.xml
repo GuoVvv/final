@@ -23,7 +23,8 @@
         select d1.*,d2.id id,d2.title ptitle,d2.iconcls piconcls,d2.parent_id pparent_id,d2.url purl
 		from menu d1 inner join menu d2
 		on d2.parent_id=d1.id
-		order  by  d1.id;
+
+		order  by  d1.id
 
     </select>
 </mapper>

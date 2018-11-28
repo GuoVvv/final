@@ -4,11 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>持名法州主页</title>
-<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">   
-<link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">   
-<script type="text/javascript" src="../js/jquery.min.js"></script>   
-<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>  
-<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../js/datagrid-detailview.js"></script>
+    <script type="text/javascript" src="../js/jquery.edatagrid.js"></script>
 <script type="text/javascript">
 	<!--菜单处理-->
     $(function(){
@@ -33,7 +35,7 @@
                 for (var i=0;i<data.length;i++) {
                     var str=" ";
                     for (var j = 0; j< data[i].menus.length; j++) {
-                        str +="<a style='margin-left: 30px'  onclick='toAddTabsForUserInfo(\""+data[i].menus[j].title+"\")' href='javaScript:void(0)'>"+ data[i].menus[j].title+"</a>"+"<br/>";
+                        str +="<p style='text-align: center'><a class=\"easyui-linkbutton\"  data-options=\"iconCls:'icon-search'\"   onclick='toAddTabsForUserInfo(\""+data[i].menus[j].title+"\",\""+data[i].menus[j].iconcls+"\",\""+data[i].menus[j].url+"\")' href='javaScript:void(0)'>"+ data[i].menus[j].title+"</a></p>"
 
                     }
 
@@ -53,7 +55,7 @@
     });
 
     //添加一个页签；里面的内容是用户信息===》就是那个datagrid.jsp中的内容
-    function toAddTabsForUserInfo(da,img){
+    function toAddTabsForUserInfo(da,img,url){
         //标题是用户信息的页签是否存在
         var isExists = $("#tt").tabs("exists",da);
 
@@ -65,8 +67,9 @@
             $("#tt").tabs("add",{
                 title: da,
                 closable:true,
-                iconCls:"icon-tip",
-                content:'<iframe src="/pages/login.jsp" width="100%" height="100%"></iframe>'
+                selected:true,
+                iconCls:img,
+                content:'<iframe src="${pageContext.request.contextPath}'+url+'" width="100%" height="100%"></iframe>'
             });
         }
 
