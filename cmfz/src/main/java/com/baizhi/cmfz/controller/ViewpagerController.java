@@ -33,7 +33,7 @@ public class ViewpagerController {
     //修改
     @RequestMapping("/update")
     public @ResponseBody boolean update(Viewpager viewpager){
-        System.out.println("修改:  "+viewpager);
+        //System.out.println("修改:  "+viewpager);
           return  viewpagerservice.update(viewpager);
     }
 
@@ -41,7 +41,7 @@ public class ViewpagerController {
     @RequestMapping("/insert")
     public @ResponseBody boolean insert(Viewpager viewpager, MultipartFile uploadFile, HttpServletRequest req) throws IOException {
 
-        System.out.println("添加  1   ："+viewpager);
+       // System.out.println("添加  1   ："+viewpager);
         //获取到上传上来的文件名
         String fileName=uploadFile.getOriginalFilename();
 
@@ -55,7 +55,7 @@ public class ViewpagerController {
         //3.写入
         uploadFile.transferTo(file);
         viewpager.setImgpath(newName);
-        System.out.println("添加  2   ："+viewpager);
+        //System.out.println("添加  2   ："+viewpager);
         return  viewpagerservice.insert(viewpager);
     }
 

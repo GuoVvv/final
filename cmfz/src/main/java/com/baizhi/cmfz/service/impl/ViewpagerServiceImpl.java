@@ -52,7 +52,7 @@ public class ViewpagerServiceImpl implements ViewpagerService {
             String uuid = UUID.randomUUID().toString();
             viewpager.setId(uuid);
             viewpager.setDate(new Date());
-            System.out.println("添加  3   ："+viewpager);
+            //System.out.println("添加  3   ："+viewpager);
             viewpagerDao.insert(viewpager);
             return true;
         }catch (Exception e){
