@@ -21,9 +21,9 @@
 
     <select id="getmenu" resultMap="map">
         select d1.*,d2.id id,d2.title ptitle,d2.iconcls piconcls,d2.parent_id pparent_id,d2.url purl
-		from menu d1 inner join menu d2
+		from menu d1 left join menu d2
 		on d2.parent_id=d1.id
-
+        where d1.parent_id is null
 		order  by  d1.id
 
     </select>
