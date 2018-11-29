@@ -55,9 +55,9 @@ public class ChapterController {
         String ff= FileUtil.getDuration(new File(file.getAbsolutePath()));
         //System.out.println("sssssss "+ff);
         long size = music.getSize();
-        double l = size / 1024.0 / 1024.0;
+        Double l = size / 1024.0 / 1024.0;
 
-        chapter.setSize(l);
+        chapter.setSize(l+"M");
         chapter.setDuration(ff);
         chapter.setDownpath("\\music\\"+newName);
         return  chapterservice.insert(chapter);

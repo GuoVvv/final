@@ -75,6 +75,7 @@
                     if (row.score != null) {
                         $("#addChapter").dialog("open")
                         $("#pid").val(row.id);
+
                         //alert(row.id)
                     } else {
                         alert("请先选中专辑")
