@@ -29,12 +29,12 @@
             text: "删除",
             handler: function () {
                 var a= $("#dg").edatagrid("getSelected");
-                alert(a)
+                //alert(a)
                 $.ajax({
                     //请求地址
                     url:"delete.action",
                     //发送到后台的数据
-                    data:{"id":a.id},
+                    data:{"id":a.id,"img":a.imgpath},
                     //请求方式
                     type:"post",
                     //执行成功的回调函数

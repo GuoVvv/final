@@ -61,8 +61,14 @@ public class ViewpagerController {
 
     //删除
     @RequestMapping("/delete")
-    public @ResponseBody boolean getDelete(String id){
+    public @ResponseBody boolean getDelete(String id, String img, HttpServletRequest req){
 
+        //1.获取文件夹的相对路径
+        String realPath =req.getSession().getServletContext().getRealPath("/img");
+        //2.file对象
+        File file = new File(realPath+"\\"+img);
+        //3.删除
+        file.delete();
         return viewpagerservice.delete(id);
     }
 

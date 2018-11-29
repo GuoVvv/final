@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.cmfz.dao.AlbumDao">
+
+    <resultMap type="com.baizhi.cmfz.entity.Album" id="map">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="coverimg" property="coverimg"/>
+        <result column="count" property="count"/>
+        <result column="score" property="score"/>
+        <result column="auctor" property="auctor"/>
+        <result column="broadcast" property="broadcast"/>
+        <result column="brief" property="brief"/>
+        <result column="publishDate" property="publishDate"/>
+        <collection property="children" ofType="Chapter">
+            <id column="oid" property="id"/>
+            <result column="ptitle" property="title"/>
+            <result column="size" property="size"/>
+            <result column="duration" property="duration"/>
+            <result column="downpath" property="downpath"/>
+            <result column="uploadDate" property="uploadDate"/>
+            <result column="pid" property="pid"/>
+        </collection>
+    </resultMap>
+
+
+   <select id="selectAll" resultMap="map">
+       select a.*,b.id old,b.title ptitle,b.size,b.duration,b.downpath,b.uploadDate,b.pid
+       from album a  LEFT join chapter b
+       on a.id=b.pid
+       LIMIT #{start},#{rows}
+   </select>
+
+    <select id="getcount" resultType="int">
+        select count(*) from album
+    </select>
+
+    <insert id="insert">
+        insert into album values(0,#{title},#{coverimg},#{count},#{score},#{auctor},#{broadcast},#{brief},#{publishDate})
+    </insert>
+</mapper>

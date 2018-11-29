@@ -33,11 +33,7 @@ public class ViewpagerServiceImpl implements ViewpagerService {
     @Override
     public boolean update(Viewpager viewpager) {
         try{
-           /* if(viewpager.getStatus().equals("y")){
-                viewpager.setStatus("n");
-            }else if(viewpager.getStatus().equals("n")){
-                viewpager.setStatus("y");
-            }*/
+
             viewpagerDao.update(viewpager);
             return true;
         }catch (Exception e){
